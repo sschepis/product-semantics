@@ -23,7 +23,7 @@
   var productTemplate = 'div(class=\'product\')= output.title\n' + 
   ' h2= output.title\n' + 
   ' b= output.price\n' + 
-  ' a(href= output.shop)= \' - \' + output.shop\n' + 
+  ' a(href= \'http:/\' + output.shop + \'.com\')= \' - http:/\' + output.shop + \'.com\'\n' + 
   ' br= output.desc\n';
   $(function(){
     $(window).hashchange( function(){
@@ -38,12 +38,13 @@
           var htmlOut = '';
           for(var p in products) {
             p = products[p];
-            var su = 'http:/' + p.shop_url + '.com';
-            su = p.url.replace(p.shop_url, su);
+            alert(JSON.stringify(p, null, 4));
+            var su = 'http:/' + p.shop_url + '.com/';
+
             htmlOut += fn({output:{
                 title: p.name,
                 price: p.price,
-                shop: su,
+                shop: p.shop_url,
                 desc: p.short_desc
             }});
           }
