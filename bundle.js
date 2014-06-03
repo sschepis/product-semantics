@@ -1,6 +1,4 @@
-require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"products":[function(require,module,exports){
-module.exports=require('UISBV0');
-},{}],"UISBV0":[function(require,module,exports){
+require=(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({"Focm2+":[function(require,module,exports){
 var request = require('browser-request');
 var qs = require('querystring');
 
@@ -18,24 +16,11 @@ var qs = require('querystring');
 			callback(err, ret ? ret.body.products : undefined);
 		});
 	};
-	exports.semGetProduct = function(q, callback) {
-		var inqry = "http://127.0.0.1:3000/query?search=[[query]]";
-		var req = {
-			uri : inqry.replace('[[query]]', q.replace(/ /g, '+') ),
-			json : true
-		};
-		request(req, function(err, ret){
-			callback(err, ret ? ret : undefined);
-		});
-	};
-
-	exports.semGetProduct('Radeon HD 6990', function(err, response) {
-		console.log( JSON.stringify( JSON.parse(response.body), null, 4 ) );
-	});
-
 })(typeof exports === 'undefined' ? this : exports);
 
-},{"browser-request":"jhzXOo","querystring":75}],"jhzXOo":[function(require,module,exports){
+},{"browser-request":"jhzXOo","querystring":89}],"products":[function(require,module,exports){
+module.exports=require('Focm2+');
+},{}],"jhzXOo":[function(require,module,exports){
 // Browser Request
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -589,7 +574,7 @@ http.STATUS_CODES = {
     510 : 'Not Extended',               // RFC 2774
     511 : 'Network Authentication Required' // RFC 6585
 };
-},{"./lib/request":7,"events":68,"url":90}],"http":[function(require,module,exports){
+},{"./lib/request":7,"events":81,"url":104}],"http":[function(require,module,exports){
 module.exports=require('j1g5Bd');
 },{}],7:[function(require,module,exports){
 var Stream = require('stream');
@@ -624,8 +609,6 @@ var Request = module.exports = function (xhr, params) {
 
     self._headers = {};
     
-    self.setHeader('Origin', '*');
-
     if (params.headers) {
         var keys = objectKeys(params.headers);
         for (var i = 0; i < keys.length; i++) {
@@ -738,7 +721,27 @@ Request.prototype.end = function (s) {
 
 // Taken from http://dxr.mozilla.org/mozilla/mozilla-central/content/base/src/nsXMLHttpRequest.cpp.html
 Request.unsafeHeaders = [
-    "upgrade"
+    "accept-charset",
+    "accept-encoding",
+    "access-control-request-headers",
+    "access-control-request-method",
+    "connection",
+    "content-length",
+    "cookie",
+    "cookie2",
+    "content-transfer-encoding",
+    "date",
+    "expect",
+    "host",
+    "keep-alive",
+    "origin",
+    "referer",
+    "te",
+    "trailer",
+    "transfer-encoding",
+    "upgrade",
+    "user-agent",
+    "via"
 ];
 
 Request.prototype.isSafeRequestHeader = function (headerName) {
@@ -764,7 +767,7 @@ var indexOf = function (xs, x) {
     return -1;
 };
 
-},{"./response":8,"Base64":9,"inherits":10,"stream":89}],8:[function(require,module,exports){
+},{"./response":8,"Base64":9,"inherits":10,"stream":103}],8:[function(require,module,exports){
 var Stream = require('stream');
 var util = require('util');
 
@@ -886,7 +889,7 @@ var isArray = Array.isArray || function (xs) {
     return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{"stream":89,"util":92}],9:[function(require,module,exports){
+},{"stream":103,"util":106}],9:[function(require,module,exports){
 ;(function () {
 
   var object = typeof exports != 'undefined' ? exports : this; // #8: web workers
@@ -2071,7 +2074,7 @@ exports.compileFileClient = function(path, options){
 
 exports.__express = exports.renderFile;
 
-},{"./compiler":13,"./doctypes":14,"./filters":15,"./lexer":18,"./nodes":28,"./parser":35,"./runtime":36,"./self-closing":37,"./utils":38,"fs":64,"with":52}],18:[function(require,module,exports){
+},{"./compiler":13,"./doctypes":14,"./filters":15,"./lexer":18,"./nodes":28,"./parser":35,"./runtime":36,"./self-closing":37,"./utils":38,"fs":71,"with":52}],18:[function(require,module,exports){
 'use strict';
 
 var utils = require('./utils');
@@ -4381,7 +4384,7 @@ Parser.prototype = {
   }
 };
 
-},{"./filters":15,"./lexer":18,"./nodes":28,"./utils":38,"character-parser":39,"constantinople":40,"fs":64,"path":70}],36:[function(require,module,exports){
+},{"./filters":15,"./lexer":18,"./nodes":28,"./utils":38,"character-parser":39,"constantinople":40,"fs":71,"path":84}],36:[function(require,module,exports){
 'use strict';
 
 /**
@@ -4586,7 +4589,7 @@ exports.rethrow = function rethrow(err, filename, lineno, str){
   throw err;
 };
 
-},{"fs":64}],37:[function(require,module,exports){
+},{"fs":71}],37:[function(require,module,exports){
 'use strict';
 
 // source: http://www.w3.org/html/wg/drafts/html/master/syntax.html#void-elements
@@ -7145,7 +7148,7 @@ function amdefine(module, requireFn) {
 module.exports = amdefine;
 
 }).call(this,require("xeDTxS"),"/node_modules/jade/node_modules/constantinople/node_modules/uglify-js/node_modules/source-map/node_modules/amdefine/amdefine.js")
-},{"path":70,"xeDTxS":71}],51:[function(require,module,exports){
+},{"path":84,"xeDTxS":85}],51:[function(require,module,exports){
 var sys = require("util");
 var MOZ_SourceMap = require("source-map");
 var UglifyJS = exports;
@@ -14990,7 +14993,7 @@ exports.describe_ast = function () {
     doitem(UglifyJS.AST_Node);
     return out + "";
 };
-},{"source-map":41,"util":92}],52:[function(require,module,exports){
+},{"source-map":41,"util":106}],52:[function(require,module,exports){
 'use strict';
 
 var uglify = require('uglify-js')
@@ -15424,11 +15427,1296 @@ function amdefine(module, requireFn) {
 module.exports = amdefine;
 
 }).call(this,require("xeDTxS"),"/node_modules/jade/node_modules/with/node_modules/uglify-js/node_modules/source-map/node_modules/amdefine/amdefine.js")
-},{"path":70,"xeDTxS":71}],63:[function(require,module,exports){
+},{"path":84,"xeDTxS":85}],63:[function(require,module,exports){
 module.exports=require(51)
-},{"source-map":53,"util":92}],64:[function(require,module,exports){
+},{"source-map":53,"util":106}],"Pwf7wh":[function(require,module,exports){
+/* Author: Sivamani Varun (varun@semantics3.com)
+ * Copyright 2012 Semantics3 Inc., see LICENSE */
 
-},{}],65:[function(require,module,exports){
+"use strict";
+
+var VERSION = '0.01';
+var MAX_LIMIT = 10;
+
+var OAuth = require('oauth').OAuth;
+
+module.exports = function (api_key,api_secret, options) {
+    var defaults = options || {};
+
+    var base_url = 'https://api.semantics3.com/v1/';
+    var userAgent = 'Semantics3 Node.js Lib/' + VERSION;
+
+    var customHeaders = {"Accept" : "*/*", "Connection" : "close", "User-Agent" : userAgent};
+    var securer = new OAuth(null, null, api_key, api_secret,'1.0', null,'HMAC-SHA1',32,customHeaders);
+
+    var data_query = {};
+    var query_result = {};
+
+    function _request(method, path, data, callback) {
+        var request_data = encodeURIComponent(JSON.stringify(data));
+        var url = base_url + path + '?q=' + request_data;
+
+        securer.get(url, null, null,
+                    function(err, data, result) {
+                        if(!err) { query_result = JSON.parse(data); }
+                        callback(err,data);
+                    });
+    }
+
+    return {
+
+        products: {
+
+                //Offers
+
+                offers_field: function () {
+                    var args = Array.prototype.slice.call( arguments, 0 );
+                    args.unshift('offers');
+                    this.add.apply(this,args);
+                },
+
+                get_offers: function (callback) {
+                    this.run_query('offers',callback);
+                },
+
+                //Categories
+
+                categories_field: function () {
+                    var args = Array.prototype.slice.call( arguments, 0 );
+                    args.unshift('categories');
+                    this.add.apply(this,args);
+                },
+
+                get_categories: function (callback) {
+                    this.run_query('categories',callback);
+                },
+
+                // Products
+
+                products_field: function () {
+                    var args = Array.prototype.slice.call( arguments, 0 );
+                    args.unshift('products');
+                    this.add.apply(this,args);
+                },
+
+                get_products: function (callback) {
+                    this.run_query('products',callback);
+                },
+
+                all_products: function() {
+                    if(!(query_result['results'])) {
+                        throw new Error("Query result is undefined. You need to run a query first. ");
+                    }
+                    return query_result['results'];
+                },
+
+                iterate_products: function(callback) {
+                    var limit=MAX_LIMIT;
+
+                    if( (!(query_result['total_results_count'])) || (query_result['offset'] >= query_result['total_results_count'])) {
+                        callback("No more iteration");
+                    }
+
+                    if(data_query['products']['limit']) {
+                        limit = data_query['products']['limit'];
+                    }
+                    if(!(data_query['products']['offset'])) {
+                        data_query['products']['offset'] = 0;
+                    }
+                    data_query['products']['offset'] = data_query['products']['offset'] + limit;
+                    this.get_products(callback);
+                },
+
+                // Common
+
+                add: function(endpoint) {
+                    var args = Array.prototype.slice.call( arguments, 0 );
+                    var fields = args.slice(1);
+
+                    if(!(endpoint && (typeof endpoint === 'string'))) {
+                        throw new Error("An endpoint is required");
+                    }
+
+                    if(!data_query[endpoint]) {
+                        data_query[endpoint] = {};
+                    }
+
+                    var prodObj = data_query[endpoint];
+
+                    for( var i=1; i<=(fields.length-1); i++ ) {
+                        if( !( prodObj[ fields[i-1] ] ) ) {
+                            prodObj[ fields[i-1] ] = {};
+                        }
+                        if(i != fields.length-1) {
+                            prodObj = prodObj[fields[i-1]];
+                        }
+                        else {
+                            prodObj[fields[i-1]] = fields[i];
+                        }
+                    }
+                },
+
+                remove: function(endpoint) {
+                    var args = Array.prototype.slice.call( arguments, 0 );
+                    var fields = args.slice(1);
+
+                    if(!(endpoint && (typeof endpoint === 'string'))) {
+                        throw new Error("An endpoint is required");
+                    }
+
+                    var valid = 0;
+                    var prodObj;
+                    var arrayCt = 0;
+
+                    if( data_query[ endpoint ] ) {
+                        prodObj = data_query[ endpoint ];
+                        arrayCt = fields.length - 1;
+                        valid = 1;
+
+                        for( var i=0; i<=arrayCt-1; i++ ) {
+                            if( prodObj[fields[i]] ) {
+                                prodObj = prodObj[fields[i]];
+                            }
+                            else {
+                                valid = 0;
+                            }
+                        }
+                    }
+
+                    if( valid ) {
+                        delete prodObj[ fields[ arrayCt ] ];
+                    }
+                    else {
+                        throw new Error("Attemped Invalid Deletion");
+                    }
+                },
+
+                get_query: function(endpoint) {
+
+                    if(!(endpoint && (typeof endpoint === 'string'))) {
+                        throw new Error("An endpoint is required");
+                    }
+
+                    return data_query[ endpoint ];
+                },
+
+                get_query_json: function(endpoint) {
+                    if(!(endpoint && (typeof endpoint === 'string'))) {
+                        throw new Error("An endpoint is required");
+                    }
+
+                    return JSON.stringify(data_query[ endpoint ]);
+                },
+
+                get_results: function() {
+                    return query_result;
+                },
+
+                get_results_json: function()  {
+                    return JSON.stringify( query_result );
+                },
+
+                run_query: function(endpoint) {
+                    var queryObj = {};
+                    var callback = arguments[arguments.length-1];
+
+                    if(arguments.length <= 1) {
+                        throw new Error("Insufficient parameters provided");
+                    }
+
+                    if(arguments.length == 2) {
+                        _request('GET',endpoint,data_query[endpoint],callback);
+                    }
+                    else {
+                        var data = arguments[1];
+                        if(typeof data === 'string') {
+                            _request('GET',endpoint,JSON.parse(data),callback);
+                        }
+                        else if(typeof data === 'object') {
+                            _request('GET',endpoint,data,callback);
+                        }
+                        else {
+                            callback("Invalid parameters sent");
+                        }
+                    }
+                },
+
+                clear: function() {
+                    query_result={};
+                    data_query={};
+                },
+        }
+    };
+}
+
+},{"oauth":66}],"semantics3":[function(require,module,exports){
+module.exports=require('Pwf7wh');
+},{}],66:[function(require,module,exports){
+exports.OAuth = require("./lib/oauth").OAuth;
+exports.OAuthEcho = require("./lib/oauth").OAuthEcho;
+exports.OAuth2 = require("./lib/oauth2").OAuth2;
+},{"./lib/oauth":68,"./lib/oauth2":69}],67:[function(require,module,exports){
+// Returns true if this is a host that closes *before* it ends?!?!
+module.exports.isAnEarlyCloseHost= function( hostName ) {
+  return hostName && hostName.match(".*google(apis)?.com$")
+}
+},{}],68:[function(require,module,exports){
+(function (Buffer){
+var crypto= require('crypto'),
+    sha1= require('./sha1'),
+    http= require('http'),
+    https= require('https'),
+    URL= require('url'),
+    querystring= require('querystring'),
+    OAuthUtils= require('./_utils');
+
+exports.OAuth= function(requestUrl, accessUrl, consumerKey, consumerSecret, version, authorize_callback, signatureMethod, nonceSize, customHeaders) {
+  this._isEcho = false;
+
+  this._requestUrl= requestUrl;
+  this._accessUrl= accessUrl;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  this._version= version;
+  if( authorize_callback === undefined ) {
+    this._authorize_callback= "oob";
+  }
+  else {
+    this._authorize_callback= authorize_callback;
+  }
+
+  if( signatureMethod != "PLAINTEXT" && signatureMethod != "HMAC-SHA1")
+    throw new Error("Un-supported signature method: " + signatureMethod )
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {"Accept" : "*/*",
+                                   "Connection" : "close",
+                                   "User-Agent" : "Node authentication"}
+  this._clientOptions= this._defaultClientOptions= {"requestTokenHttpMethod": "POST",
+                                                    "accessTokenHttpMethod": "POST"};
+  this._oauthParameterSeperator = ",";
+};
+
+exports.OAuthEcho= function(realm, verify_credentials, consumerKey, consumerSecret, version, signatureMethod, nonceSize, customHeaders) {
+  this._isEcho = true;
+
+  this._realm= realm;
+  this._verifyCredentials = verify_credentials;
+  this._consumerKey= consumerKey;
+  this._consumerSecret= this._encodeData( consumerSecret );
+  this._version= version;
+
+  if( signatureMethod != "PLAINTEXT" && signatureMethod != "HMAC-SHA1")
+    throw new Error("Un-supported signature method: " + signatureMethod );
+  this._signatureMethod= signatureMethod;
+  this._nonceSize= nonceSize || 32;
+  this._headers= customHeaders || {"Accept" : "*/*",
+                                   "Connection" : "close",
+                                   "User-Agent" : "Node authentication"};
+  this._oauthParameterSeperator = ",";
+}
+
+exports.OAuthEcho.prototype = exports.OAuth.prototype;
+
+exports.OAuth.prototype._getTimestamp= function() {
+  return Math.floor( (new Date()).getTime() / 1000 );
+}
+
+exports.OAuth.prototype._encodeData= function(toEncode){
+ if( toEncode == null || toEncode == "" ) return ""
+ else {
+    var result= encodeURIComponent(toEncode);
+    // Fix the mismatch between OAuth's  RFC3986's and Javascript's beliefs in what is right and wrong ;)
+    return result.replace(/\!/g, "%21")
+                 .replace(/\'/g, "%27")
+                 .replace(/\(/g, "%28")
+                 .replace(/\)/g, "%29")
+                 .replace(/\*/g, "%2A");
+ }
+}
+
+exports.OAuth.prototype._decodeData= function(toDecode) {
+  if( toDecode != null ) {
+    toDecode = toDecode.replace(/\+/g, " ");
+  }
+  return decodeURIComponent( toDecode);
+}
+
+exports.OAuth.prototype._getSignature= function(method, url, parameters, tokenSecret) {
+  var signatureBase= this._createSignatureBase(method, url, parameters);
+  return this._createSignature( signatureBase, tokenSecret );
+}
+
+exports.OAuth.prototype._normalizeUrl= function(url) {
+  var parsedUrl= URL.parse(url, true)
+   var port ="";
+   if( parsedUrl.port ) { 
+     if( (parsedUrl.protocol == "http:" && parsedUrl.port != "80" ) ||
+         (parsedUrl.protocol == "https:" && parsedUrl.port != "443") ) {
+           port= ":" + parsedUrl.port;
+         }
+   }
+
+  if( !parsedUrl.pathname  || parsedUrl.pathname == "" ) parsedUrl.pathname ="/";
+   
+  return parsedUrl.protocol + "//" + parsedUrl.hostname + port + parsedUrl.pathname;
+}
+
+// Is the parameter considered an OAuth parameter
+exports.OAuth.prototype._isParameterNameAnOAuthParameter= function(parameter) {
+  var m = parameter.match('^oauth_');
+  if( m && ( m[0] === "oauth_" ) ) {
+    return true;
+  }
+  else {
+    return false;
+  }
+};
+
+// build the OAuth request authorization header
+exports.OAuth.prototype._buildAuthorizationHeaders= function(orderedParameters) {
+  var authHeader="OAuth ";
+  if( this._isEcho ) {
+    authHeader += 'realm="' + this._realm + '",';
+  }
+
+  for( var i= 0 ; i < orderedParameters.length; i++) {
+     // Whilst the all the parameters should be included within the signature, only the oauth_ arguments
+     // should appear within the authorization header.
+     if( this._isParameterNameAnOAuthParameter(orderedParameters[i][0]) ) {
+      authHeader+= "" + this._encodeData(orderedParameters[i][0])+"=\""+ this._encodeData(orderedParameters[i][1])+"\""+ this._oauthParameterSeperator;
+     }
+  }
+
+  authHeader= authHeader.substring(0, authHeader.length-this._oauthParameterSeperator.length);  
+  return authHeader;
+}
+
+// Takes an object literal that represents the arguments, and returns an array
+// of argument/value pairs.
+exports.OAuth.prototype._makeArrayOfArgumentsHash= function(argumentsHash) {
+  var argument_pairs= [];
+  for(var key in argumentsHash ) {
+       var value= argumentsHash[key];
+       if( Array.isArray(value) ) {
+         for(var i=0;i<value.length;i++) {
+           argument_pairs[argument_pairs.length]= [key, value[i]];
+         }
+       }
+       else {
+         argument_pairs[argument_pairs.length]= [key, value];
+       }
+  }
+  return argument_pairs;  
+} 
+
+// Sorts the encoded key value pairs by encoded name, then encoded value
+exports.OAuth.prototype._sortRequestParams= function(argument_pairs) {
+  // Sort by name, then value.
+  argument_pairs.sort(function(a,b) {
+      if ( a[0]== b[0] )  {
+        return a[1] < b[1] ? -1 : 1; 
+      }
+      else return a[0] < b[0] ? -1 : 1;  
+  });
+
+  return argument_pairs;
+}
+
+exports.OAuth.prototype._normaliseRequestParams= function(arguments) {
+  var argument_pairs= this._makeArrayOfArgumentsHash(arguments);
+  // First encode them #3.4.1.3.2 .1
+  for(var i=0;i<argument_pairs.length;i++) {
+    argument_pairs[i][0]= this._encodeData( argument_pairs[i][0] );
+    argument_pairs[i][1]= this._encodeData( argument_pairs[i][1] );
+  }
+  
+  // Then sort them #3.4.1.3.2 .2
+  argument_pairs= this._sortRequestParams( argument_pairs );
+  
+  // Then concatenate together #3.4.1.3.2 .3 & .4
+  var args= "";
+  for(var i=0;i<argument_pairs.length;i++) {
+      args+= argument_pairs[i][0];
+      args+= "="
+      args+= argument_pairs[i][1];
+      if( i < argument_pairs.length-1 ) args+= "&";
+  }     
+  return args;
+}
+
+exports.OAuth.prototype._createSignatureBase= function(method, url, parameters) {
+  url= this._encodeData( this._normalizeUrl(url) ); 
+  parameters= this._encodeData( parameters );
+  return method.toUpperCase() + "&" + url + "&" + parameters;
+}
+
+exports.OAuth.prototype._createSignature= function(signatureBase, tokenSecret) {
+   if( tokenSecret === undefined ) var tokenSecret= "";
+   else tokenSecret= this._encodeData( tokenSecret ); 
+   // consumerSecret is already encoded
+   var key= this._consumerSecret + "&" + tokenSecret;
+
+   var hash= ""
+   if( this._signatureMethod == "PLAINTEXT" ) {
+     hash= key;
+   }
+   else {
+       if( crypto.Hmac ) {
+         hash = crypto.createHmac("sha1", key).update(signatureBase).digest("base64");
+       }
+       else {
+         hash= sha1.HMACSHA1(key, signatureBase);  
+       }
+   }
+   return hash;
+}
+exports.OAuth.prototype.NONCE_CHARS= ['a','b','c','d','e','f','g','h','i','j','k','l','m','n',
+              'o','p','q','r','s','t','u','v','w','x','y','z','A','B',
+              'C','D','E','F','G','H','I','J','K','L','M','N','O','P',
+              'Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3',
+              '4','5','6','7','8','9'];
+
+exports.OAuth.prototype._getNonce= function(nonceSize) {
+   var result = [];
+   var chars= this.NONCE_CHARS;
+   var char_pos;
+   var nonce_chars_length= chars.length;
+   
+   for (var i = 0; i < nonceSize; i++) {
+       char_pos= Math.floor(Math.random() * nonce_chars_length);
+       result[i]=  chars[char_pos];
+   }
+   return result.join('');
+}
+
+exports.OAuth.prototype._createClient= function( port, hostname, method, path, headers, sslEnabled ) {
+  var options = {
+    host: hostname,
+    port: port,
+    path: path,
+    method: method,
+    headers: headers
+  };
+  var httpModel;
+  if( sslEnabled ) {
+    httpModel= https;
+  } else {
+    httpModel= http;
+  }
+  return httpModel.request(options);     
+}
+
+exports.OAuth.prototype._prepareParameters= function( oauth_token, oauth_token_secret, method, url, extra_params ) {
+  var oauthParameters= {
+      "oauth_timestamp":        this._getTimestamp(),
+      "oauth_nonce":            this._getNonce(this._nonceSize),
+      "oauth_version":          this._version,
+      "oauth_signature_method": this._signatureMethod,
+      "oauth_consumer_key":     this._consumerKey
+  };
+
+  if( oauth_token ) {
+    oauthParameters["oauth_token"]= oauth_token;
+  }
+
+  var sig;
+  if( this._isEcho ) {
+    sig = this._getSignature( "GET",  this._verifyCredentials,  this._normaliseRequestParams(oauthParameters), oauth_token_secret);
+  }
+  else {
+    if( extra_params ) {
+      for( var key in extra_params ) {
+           oauthParameters[key]= extra_params[key];
+      }
+    }
+    var parsedUrl= URL.parse( url, false );
+
+    if( parsedUrl.query ) {
+      var key2;
+      var extraParameters= querystring.parse(parsedUrl.query);
+      for(var key in extraParameters ) {
+        var value= extraParameters[key];
+          if( typeof value == "object" ){
+            // TODO: This probably should be recursive
+            for(key2 in value){
+              oauthParameters[key + "[" + key2 + "]"] = value[key2];
+            }
+          } else {
+            oauthParameters[key]= value;
+          }
+        }
+    }
+
+    sig = this._getSignature( method,  url,  this._normaliseRequestParams(oauthParameters), oauth_token_secret);
+  }
+
+  var orderedParameters= this._sortRequestParams( this._makeArrayOfArgumentsHash(oauthParameters) );
+  orderedParameters[orderedParameters.length]= ["oauth_signature", sig];
+  return orderedParameters;
+}
+
+exports.OAuth.prototype._performSecureRequest= function( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type,  callback ) {
+  var orderedParameters= this._prepareParameters(oauth_token, oauth_token_secret, method, url, extra_params);
+
+  if( !post_content_type ) {
+    post_content_type= "application/x-www-form-urlencoded";
+  }
+  var parsedUrl= URL.parse( url, false );
+  if( parsedUrl.protocol == "http:" && !parsedUrl.port ) parsedUrl.port= 80;
+  if( parsedUrl.protocol == "https:" && !parsedUrl.port ) parsedUrl.port= 443;
+
+  var headers= {};
+  var authorization = this._buildAuthorizationHeaders(orderedParameters);
+  if ( this._isEcho ) {
+    headers["X-Verify-Credentials-Authorization"]= authorization;
+  }
+  else {
+    headers["Authorization"]= authorization;
+  }
+
+  headers["Host"] = parsedUrl.host
+
+  for( var key in this._headers ) {
+    if (this._headers.hasOwnProperty(key)) {
+      headers[key]= this._headers[key];
+    }
+  }
+
+  // Filter out any passed extra_params that are really to do with OAuth
+  for(var key in extra_params) {
+    if( this._isParameterNameAnOAuthParameter( key ) ) {
+      delete extra_params[key];
+    }
+  }
+
+  if( (method == "POST" || method == "PUT")  && ( post_body == null && extra_params != null) ) {
+    post_body= querystring.stringify(extra_params);
+  }
+
+  headers["Content-length"]= post_body ? Buffer.byteLength(post_body) : 0;
+  headers["Content-Type"]= post_content_type;
+   
+  var path;
+  if( !parsedUrl.pathname  || parsedUrl.pathname == "" ) parsedUrl.pathname ="/";
+  if( parsedUrl.query ) path= parsedUrl.pathname + "?"+ parsedUrl.query ;
+  else path= parsedUrl.pathname;
+
+  var request;
+  if( parsedUrl.protocol == "https:" ) {
+    request= this._createClient(parsedUrl.port, parsedUrl.hostname, method, path, headers, true);
+  }
+  else {
+    request= this._createClient(parsedUrl.port, parsedUrl.hostname, method, path, headers);
+  }
+
+  if( callback ) {
+    var data=""; 
+    var self= this;
+
+    // Some hosts *cough* google appear to close the connection early / send no content-length header
+    // allow this behaviour.
+    var allowEarlyClose= OAuthUtils.isAnEarlyCloseHost( parsedUrl.hostname );
+    var callbackCalled= false;
+    function passBackControl( response ) {
+      if(!callbackCalled) {
+        callbackCalled= true;
+        if ( response.statusCode >= 200 && response.statusCode <= 299 ) {
+          callback(null, data, response);
+        } else {
+          // Follow 301 or 302 redirects with Location HTTP header
+          if((response.statusCode == 301 || response.statusCode == 302) && response.headers && response.headers.location) {
+            self._performSecureRequest( oauth_token, oauth_token_secret, method, response.headers.location, extra_params, post_body, post_content_type,  callback);
+          }
+          else {
+            callback({ statusCode: response.statusCode, data: data }, data, response);
+          }
+        }
+      }
+    }
+
+    request.on('response', function (response) {
+      response.setEncoding('utf8');
+      response.on('data', function (chunk) {
+        data+=chunk;
+      });
+      response.on('end', function () {
+        passBackControl( response );
+      });
+      response.on('close', function () {
+        if( allowEarlyClose ) {
+          passBackControl( response );
+        }
+      });
+    });
+  
+    request.on("error", function(err) {
+      callbackCalled= true;
+      callback( err )
+    });
+    
+    if( (method == "POST" || method =="PUT") && post_body != null && post_body != "" ) {
+      request.write(post_body);
+    }
+    request.end();
+  }
+  else {
+    if( (method == "POST" || method =="PUT") && post_body != null && post_body != "" ) {
+      request.write(post_body);
+    }
+    return request;
+  }
+  
+  return;
+}
+
+exports.OAuth.prototype.setClientOptions= function(options) {
+  var key,
+      mergedOptions= {},
+      hasOwnProperty= Object.prototype.hasOwnProperty;
+
+  for( key in this._defaultClientOptions ) {
+    if( !hasOwnProperty.call(options, key) ) {
+      mergedOptions[key]= this._defaultClientOptions[key];
+    } else {
+      mergedOptions[key]= options[key];
+    }
+  }
+
+  this._clientOptions= mergedOptions;
+};
+
+exports.OAuth.prototype.getOAuthAccessToken= function(oauth_token, oauth_token_secret, oauth_verifier,  callback) {
+  var extraParams= {};
+  if( typeof oauth_verifier == "function" ) {
+    callback= oauth_verifier;
+  } else {
+    extraParams.oauth_verifier= oauth_verifier;
+  }
+  
+   this._performSecureRequest( oauth_token, oauth_token_secret, this._clientOptions.accessTokenHttpMethod, this._accessUrl, extraParams, null, null, function(error, data, response) {
+         if( error ) callback(error);
+         else {
+           var results= querystring.parse( data );
+           var oauth_access_token= results["oauth_token"];
+           delete results["oauth_token"];
+           var oauth_access_token_secret= results["oauth_token_secret"];
+           delete results["oauth_token_secret"];
+           callback(null, oauth_access_token, oauth_access_token_secret, results );
+         }
+   })
+}
+
+// Deprecated
+exports.OAuth.prototype.getProtectedResource= function(url, method, oauth_token, oauth_token_secret, callback) {
+  this._performSecureRequest( oauth_token, oauth_token_secret, method, url, null, "", null, callback );
+}
+
+exports.OAuth.prototype.delete= function(url, oauth_token, oauth_token_secret, callback) {
+  return this._performSecureRequest( oauth_token, oauth_token_secret, "DELETE", url, null, "", null, callback );
+}
+
+exports.OAuth.prototype.get= function(url, oauth_token, oauth_token_secret, callback) {
+  return this._performSecureRequest( oauth_token, oauth_token_secret, "GET", url, null, "", null, callback );
+}
+
+exports.OAuth.prototype._putOrPost= function(method, url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  var extra_params= null;
+  if( typeof post_content_type == "function" ) {
+    callback= post_content_type;
+    post_content_type= null;
+  }
+  if( typeof post_body != "string" ) {
+    post_content_type= "application/x-www-form-urlencoded"
+    extra_params= post_body;
+    post_body= null;
+  }
+  return this._performSecureRequest( oauth_token, oauth_token_secret, method, url, extra_params, post_body, post_content_type, callback );
+}
+ 
+
+exports.OAuth.prototype.put= function(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  return this._putOrPost("PUT", url, oauth_token, oauth_token_secret, post_body, post_content_type, callback);
+}
+
+exports.OAuth.prototype.post= function(url, oauth_token, oauth_token_secret, post_body, post_content_type, callback) {
+  return this._putOrPost("POST", url, oauth_token, oauth_token_secret, post_body, post_content_type, callback);
+}
+
+/**
+ * Gets a request token from the OAuth provider and passes that information back
+ * to the calling code.
+ *
+ * The callback should expect a function of the following form:
+ *
+ * function(err, token, token_secret, parsedQueryString) {} 
+ *
+ * This method has optional parameters so can be called in the following 2 ways:
+ *
+ * 1) Primary use case: Does a basic request with no extra parameters
+ *  getOAuthRequestToken( callbackFunction )
+ *
+ * 2) As above but allows for provision of extra parameters to be sent as part of the query to the server.
+ *  getOAuthRequestToken( extraParams, callbackFunction )
+ *
+ * N.B. This method will HTTP POST verbs by default, if you wish to override this behaviour you will
+ * need to provide a requestTokenHttpMethod option when creating the client.
+ *
+ **/
+exports.OAuth.prototype.getOAuthRequestToken= function( extraParams, callback ) {
+   if( typeof extraParams == "function" ){
+     callback = extraParams;
+     extraParams = {};
+   }
+  // Callbacks are 1.0A related 
+  if( this._authorize_callback ) {
+    extraParams["oauth_callback"]= this._authorize_callback;
+  }
+  this._performSecureRequest( null, null, this._clientOptions.requestTokenHttpMethod, this._requestUrl, extraParams, null, null, function(error, data, response) {
+    if( error ) callback(error);
+    else {
+      var results= querystring.parse(data);
+
+      var oauth_token= results["oauth_token"];
+      var oauth_token_secret= results["oauth_token_secret"];
+      delete results["oauth_token"];
+      delete results["oauth_token_secret"];
+      callback(null, oauth_token, oauth_token_secret,  results );
+    }
+  });
+}
+
+exports.OAuth.prototype.signUrl= function(url, oauth_token, oauth_token_secret, method) {
+
+  if( method === undefined ) {
+    var method= "GET";
+  }
+
+  var orderedParameters= this._prepareParameters(oauth_token, oauth_token_secret, method, url, {});
+  var parsedUrl= URL.parse( url, false );
+
+  var query=""; 
+  for( var i= 0 ; i < orderedParameters.length; i++) {
+    query+= orderedParameters[i][0]+"="+ this._encodeData(orderedParameters[i][1]) + "&";
+  }
+  query= query.substring(0, query.length-1);
+ 
+  return parsedUrl.protocol + "//"+ parsedUrl.host + parsedUrl.pathname + "?" + query;
+};
+
+exports.OAuth.prototype.authHeader= function(url, oauth_token, oauth_token_secret, method) {
+  if( method === undefined ) {
+    var method= "GET";
+  }
+
+  var orderedParameters= this._prepareParameters(oauth_token, oauth_token_secret, method, url, {});
+  return this._buildAuthorizationHeaders(orderedParameters);
+};
+
+}).call(this,require("buffer").Buffer)
+},{"./_utils":67,"./sha1":70,"buffer":72,"crypto":76,"http":"j1g5Bd","https":82,"querystring":89,"url":104}],69:[function(require,module,exports){
+(function (Buffer){
+var querystring= require('querystring'),
+    crypto= require('crypto'),
+    https= require('https'),
+    http= require('http'),
+    URL= require('url'),
+    OAuthUtils= require('./_utils');
+
+exports.OAuth2= function(clientId, clientSecret, baseSite, authorizePath, accessTokenPath) {
+  this._clientId= clientId;
+  this._clientSecret= clientSecret;
+  this._baseSite= baseSite;
+  this._authorizeUrl= authorizePath || "/oauth/authorize";
+  this._accessTokenUrl= accessTokenPath || "/oauth/access_token";
+  this._accessTokenName= "access_token";
+}
+
+// This 'hack' method is required for sites that don't use
+// 'access_token' as the name of the access token (for requests).
+// ( http://tools.ietf.org/html/draft-ietf-oauth-v2-16#section-7 )
+// it isn't clear what the correct value should be atm, so allowing
+// for specific (temporary?) override for now.
+exports.OAuth2.prototype.setAccessTokenName= function ( name ) {
+  this._accessTokenName= name;
+}
+
+exports.OAuth2.prototype._getAccessTokenUrl= function() {
+  return this._baseSite + this._accessTokenUrl; /* + "?" + querystring.stringify(params); */
+}
+
+exports.OAuth2.prototype._request= function(method, url, headers, post_body, access_token, callback) {
+
+  var http_library= https;
+  var creds = crypto.createCredentials({ });
+  var parsedUrl= URL.parse( url, true );
+  if( parsedUrl.protocol == "https:" && !parsedUrl.port ) {
+    parsedUrl.port= 443;
+  }
+
+  // As this is OAUth2, we *assume* https unless told explicitly otherwise.
+  if( parsedUrl.protocol != "https:" ) {
+    http_library= http;
+  }
+
+  var realHeaders= {};
+  if( headers ) {
+    for(var key in headers) {
+      realHeaders[key] = headers[key];
+    }
+  }
+  realHeaders['Host']= parsedUrl.host;
+
+  realHeaders['Content-Length']= post_body ? Buffer.byteLength(post_body) : 0;
+  if( access_token ) {
+    if( ! parsedUrl.query ) parsedUrl.query= {};
+    parsedUrl.query[this._accessTokenName]= access_token;
+  }
+
+  var result= "";
+  var queryStr= querystring.stringify(parsedUrl.query);
+  if( queryStr ) queryStr=  "?" + queryStr;
+  var options = {
+    host:parsedUrl.hostname,
+    port: parsedUrl.port,
+    path: parsedUrl.pathname + queryStr,
+    method: method,
+    headers: realHeaders
+  };
+
+  // Some hosts *cough* google appear to close the connection early / send no content-length header
+  // allow this behaviour.
+  var allowEarlyClose= OAuthUtils.isAnEarlyCloseHost(options.host);
+  var callbackCalled= false;
+  function passBackControl( response, result ) {
+    if(!callbackCalled) {
+      callbackCalled=true;
+      if( response.statusCode != 200 && (response.statusCode != 301) && (response.statusCode != 302) ) {
+        callback({ statusCode: response.statusCode, data: result });
+      } else {
+        callback(null, result, response);
+      }
+    }
+  }
+
+  var request = http_library.request(options, function (response) {
+    response.on("data", function (chunk) {
+      result+= chunk
+    });
+    response.on("close", function (err) {
+      if( allowEarlyClose ) {
+        passBackControl( response, result );
+      }
+    });
+    response.addListener("end", function () {
+      passBackControl( response, result );
+    });
+  });
+  request.on('error', function(e) {
+    callbackCalled= true;
+    callback(e);
+  });
+
+  if(  method == 'POST' && post_body ) {
+     request.write(post_body);
+  }
+  request.end();
+}
+
+
+exports.OAuth2.prototype.getAuthorizeUrl= function( params ) {
+  var params= params || {};
+  params['client_id'] = this._clientId;
+  params['type'] = 'web_server';
+  return this._baseSite + this._authorizeUrl + "?" + querystring.stringify(params);
+}
+
+exports.OAuth2.prototype.getOAuthAccessToken= function(code, params, callback) {
+  var params= params || {};
+  params['client_id'] = this._clientId;
+  params['client_secret'] = this._clientSecret;
+  params['type']= 'web_server';
+  var codeParam = (params.grant_type === 'refresh_token') ? 'refresh_token' : 'code';
+  params[codeParam]= code;
+
+  var post_data= querystring.stringify( params );
+  var post_headers= {
+       'Content-Type': 'application/x-www-form-urlencoded'
+   };
+
+
+  this._request("POST", this._getAccessTokenUrl(), post_headers, post_data, null, function(error, data, response) {
+    if( error )  callback(error);
+    else {
+      var results;
+      try {
+        // As of http://tools.ietf.org/html/draft-ietf-oauth-v2-07
+        // responses should be in JSON
+        results= JSON.parse( data );
+      }
+      catch(e) {
+        // .... However both Facebook + Github currently use rev05 of the spec
+        // and neither seem to specify a content-type correctly in their response headers :(
+        // clients of these services will suffer a *minor* performance cost of the exception
+        // being thrown
+        results= querystring.parse( data );
+      }
+      var access_token= results["access_token"];
+      var refresh_token= results["refresh_token"];
+      delete results["refresh_token"];
+      callback(null, access_token, refresh_token, results); // callback results =-=
+    }
+  });
+}
+
+// Deprecated
+exports.OAuth2.prototype.getProtectedResource= function(url, access_token, callback) {
+  this._request("GET", url, {}, "", access_token, callback );
+}
+
+exports.OAuth2.prototype.get= function(url, access_token, callback) {
+  this._request("GET", url, {}, "", access_token, callback );
+}
+
+}).call(this,require("buffer").Buffer)
+},{"./_utils":67,"buffer":72,"crypto":76,"http":"j1g5Bd","https":82,"querystring":89,"url":104}],70:[function(require,module,exports){
+/*
+ * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
+ * in FIPS 180-1
+ * Version 2.2 Copyright Paul Johnston 2000 - 2009.
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for details.
+ */
+
+/*
+ * Configurable variables. You may need to tweak these to be compatible with
+ * the server-side, but the defaults work in most cases.
+ */
+var hexcase = 1;  /* hex output format. 0 - lowercase; 1 - uppercase        */
+var b64pad  = "="; /* base-64 pad character. "=" for strict RFC compliance   */
+
+/*
+ * These are the functions you'll usually want to call
+ * They take string arguments and return either hex or base-64 encoded strings
+ */
+function hex_sha1(s)    { return rstr2hex(rstr_sha1(str2rstr_utf8(s))); }
+function b64_sha1(s)    { return rstr2b64(rstr_sha1(str2rstr_utf8(s))); }
+function any_sha1(s, e) { return rstr2any(rstr_sha1(str2rstr_utf8(s)), e); }
+function hex_hmac_sha1(k, d)
+  { return rstr2hex(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d))); }
+function b64_hmac_sha1(k, d)
+  { return rstr2b64(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d))); }
+function any_hmac_sha1(k, d, e)
+  { return rstr2any(rstr_hmac_sha1(str2rstr_utf8(k), str2rstr_utf8(d)), e); }
+
+/*
+ * Perform a simple self-test to see if the VM is working
+ */
+function sha1_vm_test()
+{
+  return hex_sha1("abc").toLowerCase() == "a9993e364706816aba3e25717850c26c9cd0d89d";
+}
+
+/*
+ * Calculate the SHA1 of a raw string
+ */
+function rstr_sha1(s)
+{
+  return binb2rstr(binb_sha1(rstr2binb(s), s.length * 8));
+}
+
+/*
+ * Calculate the HMAC-SHA1 of a key and some data (raw strings)
+ */
+function rstr_hmac_sha1(key, data)
+{
+  var bkey = rstr2binb(key);
+  if(bkey.length > 16) bkey = binb_sha1(bkey, key.length * 8);
+
+  var ipad = Array(16), opad = Array(16);
+  for(var i = 0; i < 16; i++)
+  {
+    ipad[i] = bkey[i] ^ 0x36363636;
+    opad[i] = bkey[i] ^ 0x5C5C5C5C;
+  }
+
+  var hash = binb_sha1(ipad.concat(rstr2binb(data)), 512 + data.length * 8);
+  return binb2rstr(binb_sha1(opad.concat(hash), 512 + 160));
+}
+
+/*
+ * Convert a raw string to a hex string
+ */
+function rstr2hex(input)
+{
+  try { hexcase } catch(e) { hexcase=0; }
+  var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
+  var output = "";
+  var x;
+  for(var i = 0; i < input.length; i++)
+  {
+    x = input.charCodeAt(i);
+    output += hex_tab.charAt((x >>> 4) & 0x0F)
+           +  hex_tab.charAt( x        & 0x0F);
+  }
+  return output;
+}
+
+/*
+ * Convert a raw string to a base-64 string
+ */
+function rstr2b64(input)
+{
+  try { b64pad } catch(e) { b64pad=''; }
+  var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+  var output = "";
+  var len = input.length;
+  for(var i = 0; i < len; i += 3)
+  {
+    var triplet = (input.charCodeAt(i) << 16)
+                | (i + 1 < len ? input.charCodeAt(i+1) << 8 : 0)
+                | (i + 2 < len ? input.charCodeAt(i+2)      : 0);
+    for(var j = 0; j < 4; j++)
+    {
+      if(i * 8 + j * 6 > input.length * 8) output += b64pad;
+      else output += tab.charAt((triplet >>> 6*(3-j)) & 0x3F);
+    }
+  }
+  return output;
+}
+
+/*
+ * Convert a raw string to an arbitrary string encoding
+ */
+function rstr2any(input, encoding)
+{
+  var divisor = encoding.length;
+  var remainders = Array();
+  var i, q, x, quotient;
+
+  /* Convert to an array of 16-bit big-endian values, forming the dividend */
+  var dividend = Array(Math.ceil(input.length / 2));
+  for(i = 0; i < dividend.length; i++)
+  {
+    dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
+  }
+
+  /*
+   * Repeatedly perform a long division. The binary array forms the dividend,
+   * the length of the encoding is the divisor. Once computed, the quotient
+   * forms the dividend for the next step. We stop when the dividend is zero.
+   * All remainders are stored for later use.
+   */
+  while(dividend.length > 0)
+  {
+    quotient = Array();
+    x = 0;
+    for(i = 0; i < dividend.length; i++)
+    {
+      x = (x << 16) + dividend[i];
+      q = Math.floor(x / divisor);
+      x -= q * divisor;
+      if(quotient.length > 0 || q > 0)
+        quotient[quotient.length] = q;
+    }
+    remainders[remainders.length] = x;
+    dividend = quotient;
+  }
+
+  /* Convert the remainders to the output string */
+  var output = "";
+  for(i = remainders.length - 1; i >= 0; i--)
+    output += encoding.charAt(remainders[i]);
+
+  /* Append leading zero equivalents */
+  var full_length = Math.ceil(input.length * 8 /
+                                    (Math.log(encoding.length) / Math.log(2)))
+  for(i = output.length; i < full_length; i++)
+    output = encoding[0] + output;
+
+  return output;
+}
+
+/*
+ * Encode a string as utf-8.
+ * For efficiency, this assumes the input is valid utf-16.
+ */
+function str2rstr_utf8(input)
+{
+  var output = "";
+  var i = -1;
+  var x, y;
+
+  while(++i < input.length)
+  {
+    /* Decode utf-16 surrogate pairs */
+    x = input.charCodeAt(i);
+    y = i + 1 < input.length ? input.charCodeAt(i + 1) : 0;
+    if(0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF)
+    {
+      x = 0x10000 + ((x & 0x03FF) << 10) + (y & 0x03FF);
+      i++;
+    }
+
+    /* Encode output as utf-8 */
+    if(x <= 0x7F)
+      output += String.fromCharCode(x);
+    else if(x <= 0x7FF)
+      output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
+                                    0x80 | ( x         & 0x3F));
+    else if(x <= 0xFFFF)
+      output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
+                                    0x80 | ((x >>> 6 ) & 0x3F),
+                                    0x80 | ( x         & 0x3F));
+    else if(x <= 0x1FFFFF)
+      output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
+                                    0x80 | ((x >>> 12) & 0x3F),
+                                    0x80 | ((x >>> 6 ) & 0x3F),
+                                    0x80 | ( x         & 0x3F));
+  }
+  return output;
+}
+
+/*
+ * Encode a string as utf-16
+ */
+function str2rstr_utf16le(input)
+{
+  var output = "";
+  for(var i = 0; i < input.length; i++)
+    output += String.fromCharCode( input.charCodeAt(i)        & 0xFF,
+                                  (input.charCodeAt(i) >>> 8) & 0xFF);
+  return output;
+}
+
+function str2rstr_utf16be(input)
+{
+  var output = "";
+  for(var i = 0; i < input.length; i++)
+    output += String.fromCharCode((input.charCodeAt(i) >>> 8) & 0xFF,
+                                   input.charCodeAt(i)        & 0xFF);
+  return output;
+}
+
+/*
+ * Convert a raw string to an array of big-endian words
+ * Characters >255 have their high-byte silently ignored.
+ */
+function rstr2binb(input)
+{
+  var output = Array(input.length >> 2);
+  for(var i = 0; i < output.length; i++)
+    output[i] = 0;
+  for(var i = 0; i < input.length * 8; i += 8)
+    output[i>>5] |= (input.charCodeAt(i / 8) & 0xFF) << (24 - i % 32);
+  return output;
+}
+
+/*
+ * Convert an array of big-endian words to a string
+ */
+function binb2rstr(input)
+{
+  var output = "";
+  for(var i = 0; i < input.length * 32; i += 8)
+    output += String.fromCharCode((input[i>>5] >>> (24 - i % 32)) & 0xFF);
+  return output;
+}
+
+/*
+ * Calculate the SHA-1 of an array of big-endian words, and a bit length
+ */
+function binb_sha1(x, len)
+{
+  /* append padding */
+  x[len >> 5] |= 0x80 << (24 - len % 32);
+  x[((len + 64 >> 9) << 4) + 15] = len;
+
+  var w = Array(80);
+  var a =  1732584193;
+  var b = -271733879;
+  var c = -1732584194;
+  var d =  271733878;
+  var e = -1009589776;
+
+  for(var i = 0; i < x.length; i += 16)
+  {
+    var olda = a;
+    var oldb = b;
+    var oldc = c;
+    var oldd = d;
+    var olde = e;
+
+    for(var j = 0; j < 80; j++)
+    {
+      if(j < 16) w[j] = x[i + j];
+      else w[j] = bit_rol(w[j-3] ^ w[j-8] ^ w[j-14] ^ w[j-16], 1);
+      var t = safe_add(safe_add(bit_rol(a, 5), sha1_ft(j, b, c, d)),
+                       safe_add(safe_add(e, w[j]), sha1_kt(j)));
+      e = d;
+      d = c;
+      c = bit_rol(b, 30);
+      b = a;
+      a = t;
+    }
+
+    a = safe_add(a, olda);
+    b = safe_add(b, oldb);
+    c = safe_add(c, oldc);
+    d = safe_add(d, oldd);
+    e = safe_add(e, olde);
+  }
+  return Array(a, b, c, d, e);
+
+}
+
+/*
+ * Perform the appropriate triplet combination function for the current
+ * iteration
+ */
+function sha1_ft(t, b, c, d)
+{
+  if(t < 20) return (b & c) | ((~b) & d);
+  if(t < 40) return b ^ c ^ d;
+  if(t < 60) return (b & c) | (b & d) | (c & d);
+  return b ^ c ^ d;
+}
+
+/*
+ * Determine the appropriate additive constant for the current iteration
+ */
+function sha1_kt(t)
+{
+  return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
+         (t < 60) ? -1894007588 : -899497514;
+}
+
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+function safe_add(x, y)
+{
+  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  return (msw << 16) | (lsw & 0xFFFF);
+}
+
+/*
+ * Bitwise rotate a 32-bit number to the left.
+ */
+function bit_rol(num, cnt)
+{
+  return (num << cnt) | (num >>> (32 - cnt));
+}
+
+exports.HMACSHA1= function(key, data) {
+  return b64_hmac_sha1(key, data);
+}
+},{}],71:[function(require,module,exports){
+
+},{}],72:[function(require,module,exports){
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -16579,7 +17867,7 @@ function assert (test, message) {
   if (!test) throw new Error(message || 'Failed assertion')
 }
 
-},{"base64-js":66,"ieee754":67}],66:[function(require,module,exports){
+},{"base64-js":73,"ieee754":74}],73:[function(require,module,exports){
 var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 
 ;(function (exports) {
@@ -16702,7 +17990,7 @@ var lookup = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
 	module.exports.fromByteArray = uint8ToBase64
 }())
 
-},{}],67:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 exports.read = function(buffer, offset, isLE, mLen, nBytes) {
   var e, m,
       eLen = nBytes * 8 - mLen - 1,
@@ -16788,7 +18076,525 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128;
 };
 
-},{}],68:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
+var Buffer = require('buffer').Buffer;
+var intSize = 4;
+var zeroBuffer = new Buffer(intSize); zeroBuffer.fill(0);
+var chrsz = 8;
+
+function toArray(buf, bigEndian) {
+  if ((buf.length % intSize) !== 0) {
+    var len = buf.length + (intSize - (buf.length % intSize));
+    buf = Buffer.concat([buf, zeroBuffer], len);
+  }
+
+  var arr = [];
+  var fn = bigEndian ? buf.readInt32BE : buf.readInt32LE;
+  for (var i = 0; i < buf.length; i += intSize) {
+    arr.push(fn.call(buf, i));
+  }
+  return arr;
+}
+
+function toBuffer(arr, size, bigEndian) {
+  var buf = new Buffer(size);
+  var fn = bigEndian ? buf.writeInt32BE : buf.writeInt32LE;
+  for (var i = 0; i < arr.length; i++) {
+    fn.call(buf, arr[i], i * 4, true);
+  }
+  return buf;
+}
+
+function hash(buf, fn, hashSize, bigEndian) {
+  if (!Buffer.isBuffer(buf)) buf = new Buffer(buf);
+  var arr = fn(toArray(buf, bigEndian), buf.length * chrsz);
+  return toBuffer(arr, hashSize, bigEndian);
+}
+
+module.exports = { hash: hash };
+
+},{"buffer":72}],76:[function(require,module,exports){
+var Buffer = require('buffer').Buffer
+var sha = require('./sha')
+var sha256 = require('./sha256')
+var rng = require('./rng')
+var md5 = require('./md5')
+
+var algorithms = {
+  sha1: sha,
+  sha256: sha256,
+  md5: md5
+}
+
+var blocksize = 64
+var zeroBuffer = new Buffer(blocksize); zeroBuffer.fill(0)
+function hmac(fn, key, data) {
+  if(!Buffer.isBuffer(key)) key = new Buffer(key)
+  if(!Buffer.isBuffer(data)) data = new Buffer(data)
+
+  if(key.length > blocksize) {
+    key = fn(key)
+  } else if(key.length < blocksize) {
+    key = Buffer.concat([key, zeroBuffer], blocksize)
+  }
+
+  var ipad = new Buffer(blocksize), opad = new Buffer(blocksize)
+  for(var i = 0; i < blocksize; i++) {
+    ipad[i] = key[i] ^ 0x36
+    opad[i] = key[i] ^ 0x5C
+  }
+
+  var hash = fn(Buffer.concat([ipad, data]))
+  return fn(Buffer.concat([opad, hash]))
+}
+
+function hash(alg, key) {
+  alg = alg || 'sha1'
+  var fn = algorithms[alg]
+  var bufs = []
+  var length = 0
+  if(!fn) error('algorithm:', alg, 'is not yet supported')
+  return {
+    update: function (data) {
+      if(!Buffer.isBuffer(data)) data = new Buffer(data)
+        
+      bufs.push(data)
+      length += data.length
+      return this
+    },
+    digest: function (enc) {
+      var buf = Buffer.concat(bufs)
+      var r = key ? hmac(fn, key, buf) : fn(buf)
+      bufs = null
+      return enc ? r.toString(enc) : r
+    }
+  }
+}
+
+function error () {
+  var m = [].slice.call(arguments).join(' ')
+  throw new Error([
+    m,
+    'we accept pull requests',
+    'http://github.com/dominictarr/crypto-browserify'
+    ].join('\n'))
+}
+
+exports.createHash = function (alg) { return hash(alg) }
+exports.createHmac = function (alg, key) { return hash(alg, key) }
+exports.randomBytes = function(size, callback) {
+  if (callback && callback.call) {
+    try {
+      callback.call(this, undefined, new Buffer(rng(size)))
+    } catch (err) { callback(err) }
+  } else {
+    return new Buffer(rng(size))
+  }
+}
+
+function each(a, f) {
+  for(var i in a)
+    f(a[i], i)
+}
+
+// the least I can do is make error messages for the rest of the node.js/crypto api.
+each(['createCredentials'
+, 'createCipher'
+, 'createCipheriv'
+, 'createDecipher'
+, 'createDecipheriv'
+, 'createSign'
+, 'createVerify'
+, 'createDiffieHellman'
+, 'pbkdf2'], function (name) {
+  exports[name] = function () {
+    error('sorry,', name, 'is not implemented yet')
+  }
+})
+
+},{"./md5":77,"./rng":78,"./sha":79,"./sha256":80,"buffer":72}],77:[function(require,module,exports){
+/*
+ * A JavaScript implementation of the RSA Data Security, Inc. MD5 Message
+ * Digest Algorithm, as defined in RFC 1321.
+ * Version 2.1 Copyright (C) Paul Johnston 1999 - 2002.
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for more info.
+ */
+
+var helpers = require('./helpers');
+
+/*
+ * Perform a simple self-test to see if the VM is working
+ */
+function md5_vm_test()
+{
+  return hex_md5("abc") == "900150983cd24fb0d6963f7d28e17f72";
+}
+
+/*
+ * Calculate the MD5 of an array of little-endian words, and a bit length
+ */
+function core_md5(x, len)
+{
+  /* append padding */
+  x[len >> 5] |= 0x80 << ((len) % 32);
+  x[(((len + 64) >>> 9) << 4) + 14] = len;
+
+  var a =  1732584193;
+  var b = -271733879;
+  var c = -1732584194;
+  var d =  271733878;
+
+  for(var i = 0; i < x.length; i += 16)
+  {
+    var olda = a;
+    var oldb = b;
+    var oldc = c;
+    var oldd = d;
+
+    a = md5_ff(a, b, c, d, x[i+ 0], 7 , -680876936);
+    d = md5_ff(d, a, b, c, x[i+ 1], 12, -389564586);
+    c = md5_ff(c, d, a, b, x[i+ 2], 17,  606105819);
+    b = md5_ff(b, c, d, a, x[i+ 3], 22, -1044525330);
+    a = md5_ff(a, b, c, d, x[i+ 4], 7 , -176418897);
+    d = md5_ff(d, a, b, c, x[i+ 5], 12,  1200080426);
+    c = md5_ff(c, d, a, b, x[i+ 6], 17, -1473231341);
+    b = md5_ff(b, c, d, a, x[i+ 7], 22, -45705983);
+    a = md5_ff(a, b, c, d, x[i+ 8], 7 ,  1770035416);
+    d = md5_ff(d, a, b, c, x[i+ 9], 12, -1958414417);
+    c = md5_ff(c, d, a, b, x[i+10], 17, -42063);
+    b = md5_ff(b, c, d, a, x[i+11], 22, -1990404162);
+    a = md5_ff(a, b, c, d, x[i+12], 7 ,  1804603682);
+    d = md5_ff(d, a, b, c, x[i+13], 12, -40341101);
+    c = md5_ff(c, d, a, b, x[i+14], 17, -1502002290);
+    b = md5_ff(b, c, d, a, x[i+15], 22,  1236535329);
+
+    a = md5_gg(a, b, c, d, x[i+ 1], 5 , -165796510);
+    d = md5_gg(d, a, b, c, x[i+ 6], 9 , -1069501632);
+    c = md5_gg(c, d, a, b, x[i+11], 14,  643717713);
+    b = md5_gg(b, c, d, a, x[i+ 0], 20, -373897302);
+    a = md5_gg(a, b, c, d, x[i+ 5], 5 , -701558691);
+    d = md5_gg(d, a, b, c, x[i+10], 9 ,  38016083);
+    c = md5_gg(c, d, a, b, x[i+15], 14, -660478335);
+    b = md5_gg(b, c, d, a, x[i+ 4], 20, -405537848);
+    a = md5_gg(a, b, c, d, x[i+ 9], 5 ,  568446438);
+    d = md5_gg(d, a, b, c, x[i+14], 9 , -1019803690);
+    c = md5_gg(c, d, a, b, x[i+ 3], 14, -187363961);
+    b = md5_gg(b, c, d, a, x[i+ 8], 20,  1163531501);
+    a = md5_gg(a, b, c, d, x[i+13], 5 , -1444681467);
+    d = md5_gg(d, a, b, c, x[i+ 2], 9 , -51403784);
+    c = md5_gg(c, d, a, b, x[i+ 7], 14,  1735328473);
+    b = md5_gg(b, c, d, a, x[i+12], 20, -1926607734);
+
+    a = md5_hh(a, b, c, d, x[i+ 5], 4 , -378558);
+    d = md5_hh(d, a, b, c, x[i+ 8], 11, -2022574463);
+    c = md5_hh(c, d, a, b, x[i+11], 16,  1839030562);
+    b = md5_hh(b, c, d, a, x[i+14], 23, -35309556);
+    a = md5_hh(a, b, c, d, x[i+ 1], 4 , -1530992060);
+    d = md5_hh(d, a, b, c, x[i+ 4], 11,  1272893353);
+    c = md5_hh(c, d, a, b, x[i+ 7], 16, -155497632);
+    b = md5_hh(b, c, d, a, x[i+10], 23, -1094730640);
+    a = md5_hh(a, b, c, d, x[i+13], 4 ,  681279174);
+    d = md5_hh(d, a, b, c, x[i+ 0], 11, -358537222);
+    c = md5_hh(c, d, a, b, x[i+ 3], 16, -722521979);
+    b = md5_hh(b, c, d, a, x[i+ 6], 23,  76029189);
+    a = md5_hh(a, b, c, d, x[i+ 9], 4 , -640364487);
+    d = md5_hh(d, a, b, c, x[i+12], 11, -421815835);
+    c = md5_hh(c, d, a, b, x[i+15], 16,  530742520);
+    b = md5_hh(b, c, d, a, x[i+ 2], 23, -995338651);
+
+    a = md5_ii(a, b, c, d, x[i+ 0], 6 , -198630844);
+    d = md5_ii(d, a, b, c, x[i+ 7], 10,  1126891415);
+    c = md5_ii(c, d, a, b, x[i+14], 15, -1416354905);
+    b = md5_ii(b, c, d, a, x[i+ 5], 21, -57434055);
+    a = md5_ii(a, b, c, d, x[i+12], 6 ,  1700485571);
+    d = md5_ii(d, a, b, c, x[i+ 3], 10, -1894986606);
+    c = md5_ii(c, d, a, b, x[i+10], 15, -1051523);
+    b = md5_ii(b, c, d, a, x[i+ 1], 21, -2054922799);
+    a = md5_ii(a, b, c, d, x[i+ 8], 6 ,  1873313359);
+    d = md5_ii(d, a, b, c, x[i+15], 10, -30611744);
+    c = md5_ii(c, d, a, b, x[i+ 6], 15, -1560198380);
+    b = md5_ii(b, c, d, a, x[i+13], 21,  1309151649);
+    a = md5_ii(a, b, c, d, x[i+ 4], 6 , -145523070);
+    d = md5_ii(d, a, b, c, x[i+11], 10, -1120210379);
+    c = md5_ii(c, d, a, b, x[i+ 2], 15,  718787259);
+    b = md5_ii(b, c, d, a, x[i+ 9], 21, -343485551);
+
+    a = safe_add(a, olda);
+    b = safe_add(b, oldb);
+    c = safe_add(c, oldc);
+    d = safe_add(d, oldd);
+  }
+  return Array(a, b, c, d);
+
+}
+
+/*
+ * These functions implement the four basic operations the algorithm uses.
+ */
+function md5_cmn(q, a, b, x, s, t)
+{
+  return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s),b);
+}
+function md5_ff(a, b, c, d, x, s, t)
+{
+  return md5_cmn((b & c) | ((~b) & d), a, b, x, s, t);
+}
+function md5_gg(a, b, c, d, x, s, t)
+{
+  return md5_cmn((b & d) | (c & (~d)), a, b, x, s, t);
+}
+function md5_hh(a, b, c, d, x, s, t)
+{
+  return md5_cmn(b ^ c ^ d, a, b, x, s, t);
+}
+function md5_ii(a, b, c, d, x, s, t)
+{
+  return md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
+}
+
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+function safe_add(x, y)
+{
+  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  return (msw << 16) | (lsw & 0xFFFF);
+}
+
+/*
+ * Bitwise rotate a 32-bit number to the left.
+ */
+function bit_rol(num, cnt)
+{
+  return (num << cnt) | (num >>> (32 - cnt));
+}
+
+module.exports = function md5(buf) {
+  return helpers.hash(buf, core_md5, 16);
+};
+
+},{"./helpers":75}],78:[function(require,module,exports){
+// Original code adapted from Robert Kieffer.
+// details at https://github.com/broofa/node-uuid
+(function() {
+  var _global = this;
+
+  var mathRNG, whatwgRNG;
+
+  // NOTE: Math.random() does not guarantee "cryptographic quality"
+  mathRNG = function(size) {
+    var bytes = new Array(size);
+    var r;
+
+    for (var i = 0, r; i < size; i++) {
+      if ((i & 0x03) == 0) r = Math.random() * 0x100000000;
+      bytes[i] = r >>> ((i & 0x03) << 3) & 0xff;
+    }
+
+    return bytes;
+  }
+
+  if (_global.crypto && crypto.getRandomValues) {
+    whatwgRNG = function(size) {
+      var bytes = new Uint8Array(size);
+      crypto.getRandomValues(bytes);
+      return bytes;
+    }
+  }
+
+  module.exports = whatwgRNG || mathRNG;
+
+}())
+
+},{}],79:[function(require,module,exports){
+/*
+ * A JavaScript implementation of the Secure Hash Algorithm, SHA-1, as defined
+ * in FIPS PUB 180-1
+ * Version 2.1a Copyright Paul Johnston 2000 - 2002.
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ * Distributed under the BSD License
+ * See http://pajhome.org.uk/crypt/md5 for details.
+ */
+
+var helpers = require('./helpers');
+
+/*
+ * Calculate the SHA-1 of an array of big-endian words, and a bit length
+ */
+function core_sha1(x, len)
+{
+  /* append padding */
+  x[len >> 5] |= 0x80 << (24 - len % 32);
+  x[((len + 64 >> 9) << 4) + 15] = len;
+
+  var w = Array(80);
+  var a =  1732584193;
+  var b = -271733879;
+  var c = -1732584194;
+  var d =  271733878;
+  var e = -1009589776;
+
+  for(var i = 0; i < x.length; i += 16)
+  {
+    var olda = a;
+    var oldb = b;
+    var oldc = c;
+    var oldd = d;
+    var olde = e;
+
+    for(var j = 0; j < 80; j++)
+    {
+      if(j < 16) w[j] = x[i + j];
+      else w[j] = rol(w[j-3] ^ w[j-8] ^ w[j-14] ^ w[j-16], 1);
+      var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)),
+                       safe_add(safe_add(e, w[j]), sha1_kt(j)));
+      e = d;
+      d = c;
+      c = rol(b, 30);
+      b = a;
+      a = t;
+    }
+
+    a = safe_add(a, olda);
+    b = safe_add(b, oldb);
+    c = safe_add(c, oldc);
+    d = safe_add(d, oldd);
+    e = safe_add(e, olde);
+  }
+  return Array(a, b, c, d, e);
+
+}
+
+/*
+ * Perform the appropriate triplet combination function for the current
+ * iteration
+ */
+function sha1_ft(t, b, c, d)
+{
+  if(t < 20) return (b & c) | ((~b) & d);
+  if(t < 40) return b ^ c ^ d;
+  if(t < 60) return (b & c) | (b & d) | (c & d);
+  return b ^ c ^ d;
+}
+
+/*
+ * Determine the appropriate additive constant for the current iteration
+ */
+function sha1_kt(t)
+{
+  return (t < 20) ?  1518500249 : (t < 40) ?  1859775393 :
+         (t < 60) ? -1894007588 : -899497514;
+}
+
+/*
+ * Add integers, wrapping at 2^32. This uses 16-bit operations internally
+ * to work around bugs in some JS interpreters.
+ */
+function safe_add(x, y)
+{
+  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  return (msw << 16) | (lsw & 0xFFFF);
+}
+
+/*
+ * Bitwise rotate a 32-bit number to the left.
+ */
+function rol(num, cnt)
+{
+  return (num << cnt) | (num >>> (32 - cnt));
+}
+
+module.exports = function sha1(buf) {
+  return helpers.hash(buf, core_sha1, 20, true);
+};
+
+},{"./helpers":75}],80:[function(require,module,exports){
+
+/**
+ * A JavaScript implementation of the Secure Hash Algorithm, SHA-256, as defined
+ * in FIPS 180-2
+ * Version 2.2-beta Copyright Angel Marin, Paul Johnston 2000 - 2009.
+ * Other contributors: Greg Holt, Andrew Kepert, Ydnar, Lostinet
+ *
+ */
+
+var helpers = require('./helpers');
+
+var safe_add = function(x, y) {
+  var lsw = (x & 0xFFFF) + (y & 0xFFFF);
+  var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+  return (msw << 16) | (lsw & 0xFFFF);
+};
+
+var S = function(X, n) {
+  return (X >>> n) | (X << (32 - n));
+};
+
+var R = function(X, n) {
+  return (X >>> n);
+};
+
+var Ch = function(x, y, z) {
+  return ((x & y) ^ ((~x) & z));
+};
+
+var Maj = function(x, y, z) {
+  return ((x & y) ^ (x & z) ^ (y & z));
+};
+
+var Sigma0256 = function(x) {
+  return (S(x, 2) ^ S(x, 13) ^ S(x, 22));
+};
+
+var Sigma1256 = function(x) {
+  return (S(x, 6) ^ S(x, 11) ^ S(x, 25));
+};
+
+var Gamma0256 = function(x) {
+  return (S(x, 7) ^ S(x, 18) ^ R(x, 3));
+};
+
+var Gamma1256 = function(x) {
+  return (S(x, 17) ^ S(x, 19) ^ R(x, 10));
+};
+
+var core_sha256 = function(m, l) {
+  var K = new Array(0x428A2F98,0x71374491,0xB5C0FBCF,0xE9B5DBA5,0x3956C25B,0x59F111F1,0x923F82A4,0xAB1C5ED5,0xD807AA98,0x12835B01,0x243185BE,0x550C7DC3,0x72BE5D74,0x80DEB1FE,0x9BDC06A7,0xC19BF174,0xE49B69C1,0xEFBE4786,0xFC19DC6,0x240CA1CC,0x2DE92C6F,0x4A7484AA,0x5CB0A9DC,0x76F988DA,0x983E5152,0xA831C66D,0xB00327C8,0xBF597FC7,0xC6E00BF3,0xD5A79147,0x6CA6351,0x14292967,0x27B70A85,0x2E1B2138,0x4D2C6DFC,0x53380D13,0x650A7354,0x766A0ABB,0x81C2C92E,0x92722C85,0xA2BFE8A1,0xA81A664B,0xC24B8B70,0xC76C51A3,0xD192E819,0xD6990624,0xF40E3585,0x106AA070,0x19A4C116,0x1E376C08,0x2748774C,0x34B0BCB5,0x391C0CB3,0x4ED8AA4A,0x5B9CCA4F,0x682E6FF3,0x748F82EE,0x78A5636F,0x84C87814,0x8CC70208,0x90BEFFFA,0xA4506CEB,0xBEF9A3F7,0xC67178F2);
+  var HASH = new Array(0x6A09E667, 0xBB67AE85, 0x3C6EF372, 0xA54FF53A, 0x510E527F, 0x9B05688C, 0x1F83D9AB, 0x5BE0CD19);
+    var W = new Array(64);
+    var a, b, c, d, e, f, g, h, i, j;
+    var T1, T2;
+  /* append padding */
+  m[l >> 5] |= 0x80 << (24 - l % 32);
+  m[((l + 64 >> 9) << 4) + 15] = l;
+  for (var i = 0; i < m.length; i += 16) {
+    a = HASH[0]; b = HASH[1]; c = HASH[2]; d = HASH[3]; e = HASH[4]; f = HASH[5]; g = HASH[6]; h = HASH[7];
+    for (var j = 0; j < 64; j++) {
+      if (j < 16) {
+        W[j] = m[j + i];
+      } else {
+        W[j] = safe_add(safe_add(safe_add(Gamma1256(W[j - 2]), W[j - 7]), Gamma0256(W[j - 15])), W[j - 16]);
+      }
+      T1 = safe_add(safe_add(safe_add(safe_add(h, Sigma1256(e)), Ch(e, f, g)), K[j]), W[j]);
+      T2 = safe_add(Sigma0256(a), Maj(a, b, c));
+      h = g; g = f; f = e; e = safe_add(d, T1); d = c; c = b; b = a; a = safe_add(T1, T2);
+    }
+    HASH[0] = safe_add(a, HASH[0]); HASH[1] = safe_add(b, HASH[1]); HASH[2] = safe_add(c, HASH[2]); HASH[3] = safe_add(d, HASH[3]);
+    HASH[4] = safe_add(e, HASH[4]); HASH[5] = safe_add(f, HASH[5]); HASH[6] = safe_add(g, HASH[6]); HASH[7] = safe_add(h, HASH[7]);
+  }
+  return HASH;
+};
+
+module.exports = function sha256(buf) {
+  return helpers.hash(buf, core_sha256, 32, true);
+};
+
+},{"./helpers":75}],81:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17093,9 +18899,24 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}],69:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
+var http = require('http');
+
+var https = module.exports;
+
+for (var key in http) {
+    if (http.hasOwnProperty(key)) https[key] = http[key];
+};
+
+https.request = function (params, cb) {
+    if (!params) params = {};
+    params.scheme = 'https';
+    return http.request.call(this, params, cb);
+}
+
+},{"http":"j1g5Bd"}],83:[function(require,module,exports){
 module.exports=require(10)
-},{}],70:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -17323,7 +19144,7 @@ var substr = 'ab'.substr(-1) === 'b'
 ;
 
 }).call(this,require("xeDTxS"))
-},{"xeDTxS":71}],71:[function(require,module,exports){
+},{"xeDTxS":85}],85:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -17388,7 +19209,7 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
-},{}],72:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 (function (global){
 /*! http://mths.be/punycode v1.2.4 by @mathias */
 ;(function(root) {
@@ -17899,7 +19720,7 @@ process.chdir = function (dir) {
 }(this));
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],73:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -17985,7 +19806,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],74:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18072,16 +19893,16 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],75:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":73,"./encode":74}],76:[function(require,module,exports){
+},{"./decode":87,"./encode":88}],90:[function(require,module,exports){
 module.exports = require("./lib/_stream_duplex.js")
 
-},{"./lib/_stream_duplex.js":77}],77:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":91}],91:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -18174,7 +19995,7 @@ function forEach (xs, f) {
 }
 
 }).call(this,require("xeDTxS"))
-},{"./_stream_readable":79,"./_stream_writable":81,"core-util-is":82,"inherits":69,"xeDTxS":71}],78:[function(require,module,exports){
+},{"./_stream_readable":93,"./_stream_writable":95,"core-util-is":96,"inherits":83,"xeDTxS":85}],92:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -18222,7 +20043,7 @@ PassThrough.prototype._transform = function(chunk, encoding, cb) {
   cb(null, chunk);
 };
 
-},{"./_stream_transform":80,"core-util-is":82,"inherits":69}],79:[function(require,module,exports){
+},{"./_stream_transform":94,"core-util-is":96,"inherits":83}],93:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19185,7 +21006,7 @@ function indexOf (xs, x) {
 }
 
 }).call(this,require("xeDTxS"))
-},{"buffer":65,"core-util-is":82,"events":68,"inherits":69,"isarray":83,"stream":89,"string_decoder/":84,"xeDTxS":71}],80:[function(require,module,exports){
+},{"buffer":72,"core-util-is":96,"events":81,"inherits":83,"isarray":97,"stream":103,"string_decoder/":98,"xeDTxS":85}],94:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -19397,7 +21218,7 @@ function done(stream, er) {
   return stream.push(null);
 }
 
-},{"./_stream_duplex":77,"core-util-is":82,"inherits":69}],81:[function(require,module,exports){
+},{"./_stream_duplex":91,"core-util-is":96,"inherits":83}],95:[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19788,7 +21609,7 @@ function endWritable(stream, state, cb) {
 }
 
 }).call(this,require("xeDTxS"))
-},{"./_stream_duplex":77,"buffer":65,"core-util-is":82,"inherits":69,"stream":89,"xeDTxS":71}],82:[function(require,module,exports){
+},{"./_stream_duplex":91,"buffer":72,"core-util-is":96,"inherits":83,"stream":103,"xeDTxS":85}],96:[function(require,module,exports){
 (function (Buffer){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -19898,12 +21719,12 @@ function objectToString(o) {
   return Object.prototype.toString.call(o);
 }
 }).call(this,require("buffer").Buffer)
-},{"buffer":65}],83:[function(require,module,exports){
+},{"buffer":72}],97:[function(require,module,exports){
 module.exports = Array.isArray || function (arr) {
   return Object.prototype.toString.call(arr) == '[object Array]';
 };
 
-},{}],84:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20105,10 +21926,10 @@ function base64DetectIncompleteChar(buffer) {
   return incomplete;
 }
 
-},{"buffer":65}],85:[function(require,module,exports){
+},{"buffer":72}],99:[function(require,module,exports){
 module.exports = require("./lib/_stream_passthrough.js")
 
-},{"./lib/_stream_passthrough.js":78}],86:[function(require,module,exports){
+},{"./lib/_stream_passthrough.js":92}],100:[function(require,module,exports){
 exports = module.exports = require('./lib/_stream_readable.js');
 exports.Readable = exports;
 exports.Writable = require('./lib/_stream_writable.js');
@@ -20116,13 +21937,13 @@ exports.Duplex = require('./lib/_stream_duplex.js');
 exports.Transform = require('./lib/_stream_transform.js');
 exports.PassThrough = require('./lib/_stream_passthrough.js');
 
-},{"./lib/_stream_duplex.js":77,"./lib/_stream_passthrough.js":78,"./lib/_stream_readable.js":79,"./lib/_stream_transform.js":80,"./lib/_stream_writable.js":81}],87:[function(require,module,exports){
+},{"./lib/_stream_duplex.js":91,"./lib/_stream_passthrough.js":92,"./lib/_stream_readable.js":93,"./lib/_stream_transform.js":94,"./lib/_stream_writable.js":95}],101:[function(require,module,exports){
 module.exports = require("./lib/_stream_transform.js")
 
-},{"./lib/_stream_transform.js":80}],88:[function(require,module,exports){
+},{"./lib/_stream_transform.js":94}],102:[function(require,module,exports){
 module.exports = require("./lib/_stream_writable.js")
 
-},{"./lib/_stream_writable.js":81}],89:[function(require,module,exports){
+},{"./lib/_stream_writable.js":95}],103:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20251,7 +22072,7 @@ Stream.prototype.pipe = function(dest, options) {
   return dest;
 };
 
-},{"events":68,"inherits":69,"readable-stream/duplex.js":76,"readable-stream/passthrough.js":85,"readable-stream/readable.js":86,"readable-stream/transform.js":87,"readable-stream/writable.js":88}],90:[function(require,module,exports){
+},{"events":81,"inherits":83,"readable-stream/duplex.js":90,"readable-stream/passthrough.js":99,"readable-stream/readable.js":100,"readable-stream/transform.js":101,"readable-stream/writable.js":102}],104:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -20960,14 +22781,14 @@ function isNullOrUndefined(arg) {
   return  arg == null;
 }
 
-},{"punycode":72,"querystring":75}],91:[function(require,module,exports){
+},{"punycode":86,"querystring":89}],105:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],92:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -21557,4 +23378,4 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("xeDTxS"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":91,"inherits":69,"xeDTxS":71}]},{},[])
+},{"./support/isBuffer":105,"inherits":83,"xeDTxS":85}]},{},[])

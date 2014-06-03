@@ -1,12 +1,11 @@
 "use strict";
 
-var sconfig = require('./assets/js/serverConfig');
 var path = require('path');
 
 exports.host = {
     name : 'product-semantics',
-    port : process.env.PORT || sconfig.port,
-    baseurl : process.env.BASEURL || sconfig.baseUrl(),
+    port : process.env.PORT || 3000,
+    baseurl : process.env.BASEURL || 'http://127.0.0.1',
     contact : 'contact@bespinholdings.com'
 };
 var config = exports;

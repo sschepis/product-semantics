@@ -1,2 +1,1 @@
-browserify -r jade -r browser-request -r ./index.js:products > bundle.js
-
+browserify -r http-browserify:http -r jade -r browser-request:request -r ./js/products.js:products > js/bundle.js
