@@ -1,0 +1,15 @@
+#output {
+	width : 100%;
+	height : auto;
+	margin : 10px;
+}
+#output .product {
+	width : 100%;
+	height : auto;
+	background-color: #eee;
+	margin-top : 15px;
+	padding:5px;
+}
+#output h2 {
+	font-size : 1.2em;
+}
