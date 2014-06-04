@@ -4,7 +4,7 @@ var path = require('path');
 
 exports.host = {
     name : 'product-semantics',
-    port : process.env.PORT || 3000,
+    port : process.env.PORT || 8080,
     baseurl : process.env.BASEURL || 'http://127.0.0.1',
     contact : 'contact@bespinholdings.com'
 };

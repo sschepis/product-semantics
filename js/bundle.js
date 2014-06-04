@@ -25,7 +25,7 @@ var qs = require('querystring');
 			json : true
 		};
 		request(req, function(err, ret){
-			callback(err, ret ? ret : undefined);
+			callback(err, ret ? ret.body : undefined);
 		});
 	};
 

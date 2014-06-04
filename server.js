@@ -2,8 +2,7 @@
 
 var restify = require('restify');
 var async = require('async');
-var path = require('path');
-var fs = require('fs');
+var qs = require('querystring');
 
 var config = require('./config');
 
@@ -64,18 +63,67 @@ server.use(restify.requestLogger());
 server.use(restify.sanitizePath());
 
 var getProductInfo = function(req, res, next) {
-    for(var key in req.params) {
-        sem3.products.products_field( key, req.params[key] );
+    if(req.params.q) {
+        var query = qs.parse(req.params.q);
+        for(var key in query) {
+            sem3.products.products_field( key, query[key] );
+        }
+    } else {
+        for(var key in req.params) {
+            sem3.products.products_field( key, req.params[key] );
+        }
     }
+
     var constructedJson = sem3.products.get_query_json( "products" );
     log.info( constructedJson );
 
     sem3.products.get_products(
-    function(err, products) {
+    function(err, rs) {
         if (err) {
             return log.info(err);
-        }   
-        res.send(products);
+        }
+        var output = {
+            total : rs.total_results_count,
+            count : rs.results_count,
+            offset : rs.offset,
+            products : []
+        };
+        rs = JSON.parse(rs);
+        for(var p in rs.results) {
+            p = rs.results[p];
+            var pout = {
+                cat_id : p.cat_id,
+                brand : p.brand,
+                model : p.model,
+                total_available_qty : p.offers_total,
+                name : p.name,
+                price : p.price,
+                upc : p.upc,
+                features : p.features,
+                created_on : p.created_at,
+                updated_on : p.updated_at,
+                sellers : []
+            };
+            for(var sd in p.sitedetails) {
+                sd = p.sitedetails[sd];
+                var seller = {
+                    available_qty : sd.offers_count,
+                    sku : sd.sku,
+                    name : sd.name,
+                    url : sd.url,
+                    newlylisted_qty : sd.recentoffers_count,
+                    inventory : []
+                }
+                for(var lo in sd.latestoffers) {
+                    lo = sd.latestoffers[lo];
+                    delete lo.seller;
+                    seller.inventory.push(lo);
+                }
+                pout.sellers.push(seller);
+            }
+            output.products.push(pout);
+        }
+        res.send(output);
         next();
     });
 }
