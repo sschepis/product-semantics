@@ -1,59 +1,101 @@
 <!DOCTYPE html>
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width" />
-  <title>Find and Price a Product</title>
+  <title>Product Intelligence</title>
 
-  <!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
-  <link rel="stylesheet" href="css/normalize.css" />
-  <link rel="stylesheet" href="css/foundation.min.css" />
+  <!-- foundation css definitions. -->
+  <link type="text/css" rel="stylesheet" href="css/normalize.css" />
+  <link type="text/css" rel="stylesheet" href="css/foundation.min.css" />
 
-  <!-- If you are using the gem version, you need this only -->
-  <link rel="stylesheet" href="css/app.css" />
+  <!-- syntax highlighter css definition -->
+  <link type="text/css" rel="stylesheet" href="css/sh/shCoreMidnight.css">
 
-  <script src="js/vendor/modernizr.js"></script>
+  <!-- application css definition -->
+  <link type="text/css" rel="stylesheet" href="css/app.css" />
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/json2/20110223/json2.js"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="http://raw.github.com/andris9/jStorage/master/jstorage.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-hashchange/v1.3/jquery.ba-hashchange.min.js"></script>
+  <!-- 3rd party libs -->
+  <script type="text/javascript" src="js/vendor/modernizr.js"></script>
+  <script type="text/javascript" src="js/vendor/json2.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery.js"></script>
+  <script type="text/javascript" src="js/vendor/jstorage.js"></script>
+  <script type="text/javascript" src="js/vendor/jquery.ba-hashchange.min.js"></script>
+  <script type="text/javascript" src="js/vendor/sh/shCore.js"></script>
+  <script type="text/javascript" src="js/vendor/sh/shBrushJScript.js"></script>
+  <script type="text/javascript">SyntaxHighlighter.all();</script>
 
-  <script type="text/javascript" src="js/bundle.js"></script>
+  <!-- app-related javascript - app controller and app views  -->
+  <script type="text/javascript" src="js/app-bundle.js"></script>
   <script type="text/javascript" src="js/view.js"></script>
 
 </head>
 <body>
 
-    <div class="row">
-      <div class="large-12 columns">
-        <h1>Find and Price a Product</h1>
-      </div>
-    </div>
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Find and Price a Product</h1>
+  </div>
+</div>
 
-    <div class="row">
-      <div class="large-9 columns">
-        <input type="text" id='p' placeholder="Search for a product">
-      </div>
-      <div class="large-3 columns">
-        <a href="javascript:searchP()" class="button small success radius">Press Me</a>
-      </div>
-    </div>
-    
-    <div class="row">
-      <div class="large-4 columns">
-        <div id="items"></div>
-      </div>  
-      <div class="large-8 columns">
-        <div id="output"></div>
-      </div>
-    </div>
+<div class="row">
+  <div class="large-9 columns">
+    <input type="text" id='p' placeholder="Search for a product">
+  </div>
+  <div class="large-3 columns">
+    <a href="javascript:searchP()" class="button small success radius">press me</a>
+  </div>
+</div>
 
-  <script src="js/foundation.min.js"></script>
-  <script>
-    $(document).foundation();
-  </script>
+<div class="row">
+  <div class="large-4 columns">
+    <div id="items"></div>
+  </div>
+  <div class="large-8 columns">
+    <div id="output"></div>
+    <table id="wait" style="display:none">
+      <tr><td><img src="img/preloader.gif" /></td></tr>
+    </table>
+  </div>
+</div>
+
+
+
+<script src="js/foundation.min.js"></script>
+<script>$(document).foundation();</script>
+
+<!-- jade template for each search result item -->
+<script type="text/x-jade-tmpl" id="productTemplate">
+div(class='product searchresult', id='p'+item.id)
+    h2= item.name
+    b= item.price
+    h2= item.upc
+    b= item.total_available_qty
+</script>
+
+<!-- jade template for each tracked item -->
+<script type="text/x-jade-tmpl" id="trackedItemTemplate">
+div(class='product trackeditem',id='i'+item.id)
+    b= item.name
+    b= item.upc
+</script>
+
+<!-- jade template for item detail -->
+<script type="text/x-jade-tmpl" id="itemDetailTemplate">
+div(class='product detail', id='d'+item.id)
+    h2= item.name
+    h3= '$' + item.price
+    =  item.total_available_qty + ' available units.'
+    br
+    = (item.sellers ? item.sellers.length : '0') + ' sellers stock this product.'
+    br
+    h3= 'features'
+    pre(class='brush:js', style='height:200px')= JSON.stringify(item.features,null,4)
+    br
+    h3= 'sellers'
+</script>
+
 </body>
 </html>

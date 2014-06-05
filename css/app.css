@@ -3,13 +3,26 @@
 	height : auto;
 	margin : 10px;
 }
-#output .product {
+#output .searchresult {
 	width : 100%;
 	height : auto;
 	background-color: #eee;
 	margin-top : 15px;
 	padding:5px;
 }
-#output h2 {
+#output .searchresult h2 {
 	font-size : 1.2em;
+}
+
+#items {
+    width : 100%;
+    height : auto;
+    margin : 10px;
+}
+#items .trackeditem {
+    width : 100%;
+    height : auto;
+    background-color: #fef;
+    margin-top : 15px;
+    padding:5px;
 }
