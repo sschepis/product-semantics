@@ -1,0 +1,110 @@
+{
+    "cat_id": "19674",
+    "brand": "XFX",
+    "model": "HD699AENF9",
+    "total_available_qty": 23,
+    "name": "XFX AMD Radeon HD 6990 830M 4 GB GDDR5 Four MINIDP DVI PCI-E Video Card, HD699AENF9",
+    "price": "827.99",
+    "upc": "778656054882",
+    "features": {
+        "Required Power Supply": "750 W",
+        "Device Type": "Graphics card",
+        "Interfaces": "4 x Mini DisplayPort DVI-I (dual link) HDMI - with adapter 2 x DVI-I - with adapter",
+        "Peripheral / Interface Devices": "Two additional power connectors, adjacent PCI slot",
+        "Bus Type": "PCI Express 2.1 x16",
+        "Core Clock": "830 MHz",
+        "Software Included": "Drivers & Utilities",
+        "Bus Width": "256-bit",
+        "Technology": "GDDR5 SDRAM",
+        "Other Features": "Avivo HD Technology, AMD Eyefinity Technology, AMD HD3D Technology, AMD Accelerated Parallel Processing (APP) Technology, AMD PowerPlay technology, AMD CrossFireX Technology, AMD Stream technology, AMD Hybrid Graphics Technology",
+        "Effective Clock Speed": "5 GHz",
+        "Graphics Engine": "2 GPUs - AMD Radeon HD 6990",
+        "Max Resolution": "2560 x 1600",
+        "Included Accessories": "Crossfire bridge, XFX Serial Number door hanger",
+        "Max Resolution Details": "DVI: 2560 x 1600 / DisplayPort: 2560 x 1600 / HDMI: 2560 x 1600 / VGA: 2048 x 1536",
+        "API Supported": "DirectX 11",
+        "Cables Included": "2 x Mini DisplayPort-DVI adapter 1 x Mini DisplayPort-HDMI adapter"
+    },
+    "created_on": 1347719362,
+    "updated_on": 1401446254,
+    "sellers": [
+        {
+            "available_qty": 4,
+            "sku": "1463950739",
+            "name": "memory4less.com",
+            "url": "http://www.memory4less.com/m4l_itemdetail.aspx?itemid=1463950739&rid=91",
+            "newlylisted_qty": 1,
+            "inventory": [
+                {
+                    "lastrecorded_at": 1388404300,
+                    "currency": "USD",
+                    "firstrecorded_at": 1388404300,
+                    "availability": "Available",
+                    "id": "6qOBmIaLNQwIkOSgg0Sk80",
+                    "price": "1126.51"
+                },
+                {
+                    "lastrecorded_at": 1382047900,
+                    "firstrecorded_at": 1382047900,
+                    "currency": "USD",
+                    "availability": "Available",
+                    "id": "2Bj093C3TAK6MasAGegMoQ",
+                    "price": "1085.55"
+                },
+                {
+                    "lastrecorded_at": 1385029500,
+                    "currency": "USD",
+                    "firstrecorded_at": 1385029500,
+                    "availability": "Available",
+                    "price": "1157.23",
+                    "id": "2smPjfmXH6q0SmkeOyeGYq"
+                }
+            ]
+        },
+        {
+            "available_qty": 2,
+            "sku": "2098094",
+            "name": "aztekcomputers.com",
+            "url": "http://www.aztekcomputers.com/HD699AENF9-XFX-2098094.html",
+            "newlylisted_qty": 1,
+            "inventory": [
+                {
+                    "lastrecorded_at": 1385029500,
+                    "firstrecorded_at": 1382047900,
+                    "currency": "USD",
+                    "availability": "Available",
+                    "price": "757.90",
+                    "id": "0lOftdmHLGokmMKO8mqOSY",
+                    "shipping": "10.50",
+                    "condition": "Refurbished"
+                },
+                {
+                    "lastrecorded_at": 1379769700,
+                    "firstrecorded_at": 1379769700,
+                    "currency": "USD",
+                    "availability": "Available",
+                    "price": "757.90",
+                    "id": "2FbzBAhFlokkmCWsCWWiSQ"
+                }
+            ]
+        },
+        {
+            "available_qty": 1,
+            "sku": "35683",
+            "name": "eio.com",
+            "url": "http://www.eio.com/p-35683-xfx-hd-699a-enf9-radeon-hd-6990-4gb-256-bit-gddr5-pci-express-21-x16-hdcp-ready-video-card-with-eyefinity.aspx",
+            "newlylisted_qty": 1,
+            "inventory": [
+                {
+                    "lastrecorded_at": 1388404300,
+                    "currency": "USD",
+                    "firstrecorded_at": 1379769700,
+                    "availability": "Available",
+                    "price": "827.99",
+                    "id": "1bErbBrigCWKEGuQ0Y0O00",
+                    "shipping": "29.59"
+                }
+            ]
+        }
+    ]
+}

@@ -73,9 +73,7 @@ var getProductInfo = function(req, res, next) {
             sem3.products.products_field( key, req.params[key] );
         }
     }
-
     var constructedJson = sem3.products.get_query_json( "products" );
-    log.info( constructedJson );
 
     sem3.products.get_products(
     function(err, rs) {
@@ -89,9 +87,11 @@ var getProductInfo = function(req, res, next) {
             products : []
         };
         rs = JSON.parse(rs);
+        console.log(JSON.stringify(rs, null, 4));
         for(var p in rs.results) {
             p = rs.results[p];
             var pout = {
+                id : p.sem3_id,
                 cat_id : p.cat_id,
                 brand : p.brand,
                 model : p.model,
